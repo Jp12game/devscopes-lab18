@@ -1,0 +1,55 @@
+replicaCount: 2 
+
+  
+
+image: 
+
+  repository: devsecops-lab/status-api 
+
+  tag: "2.0" 
+
+  pullPolicy: IfNotPresent 
+
+  
+
+resources: 
+
+  requests: 
+
+    cpu: 50m 
+
+    memory: 64Mi 
+
+  limits: 
+
+    cpu: 200m 
+
+    memory: 128Mi 
+
+  
+
+autoscaling: 
+
+  enabled: true 
+
+  minReplicas: 2 
+
+  maxReplicas: 6 
+
+  targetCPUUtilizationPercentage: 50 
+
+  
+
+podDisruptionBudget: 
+
+  enabled: true 
+
+  minAvailable: 1 
+
+  
+
+ingress: 
+
+  enabled: true 
+
+  className: nginx 
