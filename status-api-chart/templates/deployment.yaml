@@ -1,0 +1,71 @@
+apiVersion: apps/v1 
+
+kind: Deployment 
+
+metadata: 
+
+  name: {{ .Release.Name }}-status-api 
+
+  labels: 
+
+    app: {{ .Release.Name }}-status-api 
+
+spec: 
+
+  replicas: {{ .Values.replicaCount }} 
+
+  selector: 
+
+    matchLabels: 
+
+      app: {{ .Release.Name }}-status-api 
+
+  template: 
+
+    metadata: 
+
+      labels: 
+
+        app: {{ .Release.Name }}-status-api 
+
+    spec: 
+
+      containers: 
+
+        - name: status-api 
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" 
+
+          imagePullPolicy: {{ .Values.image.pullPolicy }} 
+
+          ports: 
+
+            - containerPort: 3000 
+
+          resources: 
+
+            {{- toYaml .Values.resources | nindent 12 }} 
+
+          readinessProbe: 
+
+            httpGet: 
+
+              path: /health 
+
+              port: 3000 
+
+            initialDelaySeconds: 2 
+
+            periodSeconds: 5 
+
+          livenessProbe: 
+
+            httpGet: 
+
+              path: /health 
+
+              port: 3000 
+
+            initialDelaySeconds: 5 
+
+            periodSeconds: 10 

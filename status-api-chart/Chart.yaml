@@ -1,0 +1,11 @@
+apiVersion: v2 
+
+name: status-api 
+
+description: Chart de Helm para la API de estado del laboratorio DevSecOps 
+
+type: application 
+
+version: 1.0.0 
+
+appVersion: "2.0" 

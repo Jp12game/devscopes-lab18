@@ -1,0 +1,41 @@
+apiVersion: apps/v1 
+
+kind: Deployment 
+
+metadata: 
+
+  name: billing-consumer 
+
+  labels: 
+
+    app: billing-consumer 
+
+spec: 
+
+  replicas: 1 
+
+  selector: 
+
+    matchLabels: 
+
+      app: billing-consumer 
+
+  template: 
+
+    metadata: 
+
+      labels: 
+
+        app: billing-consumer 
+
+    spec: 
+
+      containers: 
+
+        - name: billing-consumer 
+
+          image: devsecops-lab/k8s-app:1.0 
+
+          imagePullPolicy: IfNotPresent 
+
+          command: ["node", "kafka-consumer.js"] 

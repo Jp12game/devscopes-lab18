@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "stripe-live-test-key"
+description = "Stripe Live API Key"
+regex = '''sk_live_[0-9A-Za-z]{24,}'''
+keywords = ["sk_live_"]
